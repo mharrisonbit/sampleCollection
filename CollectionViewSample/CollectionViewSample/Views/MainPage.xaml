@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CollectionViewSample.Views.MainPage"
+             Title="{Binding Title}"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Name="HomePageView">
+     <ScrollView>
+        <StackLayout>
+            <Button Text="Refresh"
+                    Visual="Material"
+                    Command="{Binding TestCmd}"/>
+            <Frame Visual="Material" Padding="0" Margin="20,0,20,0">
+                <SearchBar x:Name="HomeSearchBar"
+                           Style="{StaticResource SearchBar}"
+                           SearchCommand="{Binding SearchBarCmd}"
+                           SearchCommandParameter="{Binding Text, Source={x:Reference HomeSearchBar}}"/>
+            </Frame>
+             <StackLayout Orientation="Horizontal"
+                         VerticalOptions="CenterAndExpand">
+                <Label Text="Events" Style="{StaticResource HomePageLabel}"
+                       HorizontalTextAlignment="Start"/>
+            </StackLayout>
+             <CollectionView x:Name="EventsList"
+                            ItemsSource="{Binding LimitedEvents}"
+                            Style="{StaticResource HomePageCollectionViews}"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            HeightRequest="145"
+                            WidthRequest="145"
+                            Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <pancakeView:PancakeView
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="0"
+                                BackgroundGradientStartColor="#50ffffff"
+                                BackgroundGradientEndColor="#000000"
+                                CornerRadius="20">
+                                <Grid>
+                                    <ffimageloading:CachedImage
+                                                Source="{Binding Image}"
+                                                Aspect="AspectFill"
+                                                CacheDuration="120"/>
+                                    <!--<ffimageloading:CachedImage
+                                        Source="Gradient"
+                                        Aspect="AspectFill"/>-->
+                                </Grid>
+                            </pancakeView:PancakeView>
+                            <Label
+                                        
+                                Text="{Binding StartDate}"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ListItemSelected, Source={x:Reference HomePageView}}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator IsRunning="True"
+                               IsVisible="{Binding IsBusy}"/>
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="CenterAndExpand">
+                <Label Text="Food" Style="{StaticResource HomePageLabel}"
+                       HorizontalTextAlignment="Start"/>
+            </StackLayout>
+             <StackLayout Orientation="Horizontal"
+                         VerticalOptions="CenterAndExpand">
+                <Label Text="Tourism" Style="{StaticResource HomePageLabel}"
+                       HorizontalTextAlignment="Start"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="CenterAndExpand">
+                <Label Text="Shop" Style="{StaticResource HomePageLabel}"
+                       HorizontalTextAlignment="Start"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

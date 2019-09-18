@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+                        xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                        x:Class="CollectionViewSample.App">
+	<Application.Resources>
+        <Style x:Key="LogoImage" TargetType="Image">
+            <Setter Property="Source" Value="Logo.png" />
+            <Setter Property="HeightRequest" Value="60" />
+            <Setter Property="Margin" Value="0,30,0,10" />
+        </Style>
+        <Style x:Key="SearchBar" TargetType="SearchBar">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="10,0,10,0" />
+            <Setter Property="Placeholder" Value="Search" />
+            <Setter Property="PlaceholderColor" Value="#B5B5B5" />
+            <Setter Property="BackgroundColor" Value="#ffffff" />
+        </Style>
+        <Style x:Key="HomePageLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Margin" Value="10,20,10,0" />
+            <Setter Property="TextColor" Value="#000000" />
+        </Style>
+        <Style x:Key="HomePageCollectionViews" TargetType="CollectionView">
+            <Setter Property="ItemsLayout" Value="HorizontalList" />
+            <Setter Property="HeightRequest" Value="170" />
+        </Style>
+
+        <!--CollectionView Styles-->
+        <Style x:Key="CollectionTitleLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="MaxLines" Value="1" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Margin" Value="0,0,0,-5" />
+        </Style>
+        <Style x:Key="CollectionSecondaryLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#BEBEBE" />
+            <Setter Property="FontAttributes" Value="Italic" />
+            <Setter Property="MaxLines" Value="1" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Margin" Value="0,0,0,5" />
+        </Style>
+
+        <x:Array x:Key="Rainbow" Type="{x:Type yummy:GradientStop}">
+            <yummy:GradientStop Color="#ffffff" Offset="0" />
+            <yummy:GradientStop Color="Transparent" Offset="0.5" />
+            <yummy:GradientStop Color="#000000" Offset="1" />
+        </x:Array>
+	</Application.Resources>
+</prism:PrismApplication>
